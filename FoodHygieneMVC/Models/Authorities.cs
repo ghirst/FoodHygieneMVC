@@ -5,8 +5,8 @@ namespace FoodHygieneMVC.Models
 {
     public class Link
     {
-        public string rel { get; set; }
-        public string href { get; set; }
+        public string Rel { get; set; }
+        public string Href { get; set; }
     }
 
     public class Authority
@@ -16,31 +16,41 @@ namespace FoodHygieneMVC.Models
         public string Name { get; set; }
         public int EstablishmentCount { get; set; }
         public int SchemeType { get; set; }
-        public List<Link> links { get; set; }
+        public List<Link> Links { get; set; }
+
+        public int Star5 { get; set; }
+        public int Star4 { get; set; }
+        public int Star3 { get; set; }
+
+        public int Star2 { get; set; }
+        public int Star1 { get; set; }
+        public int StarExcept { get; set; }
     }
 
     public class Meta
     {
-        public string dataSource { get; set; }
-        public DateTime extractDate { get; set; }
-        public int itemCount { get; set; }
-        public string returncode { get; set; }
-        public int totalCount { get; set; }
-        public int totalPages { get; set; }
-        public int pageSize { get; set; }
-        public int pageNumber { get; set; }
+        public string DataSource { get; set; }
+        public DateTime ExtractDate { get; set; }
+        public int ItemCount { get; set; }
+        public string Returncode { get; set; }
+        public int TotalCount { get; set; }
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 
     public class Link2
     {
-        public string rel { get; set; }
-        public string href { get; set; }
+        public string Rel { get; set; }
+        public string Href { get; set; }
     }
 
     public class Root
     {
-        public List<Authority> authorities { get; set; }
-        public Meta meta { get; set; }
-        public List<Link2> links { get; set; }
+        public List<Authority> Authorities { get; set; }
+        public Meta Meta { get; set; }
+        public List<Link2> Links { get; set; }
     }
+
+    
 }

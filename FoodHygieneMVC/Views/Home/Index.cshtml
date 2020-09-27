@@ -9,7 +9,7 @@
     <hr />
     <div class="form-group">
 
-        <table class="table table-responsive" style="width:400px">
+        <table class="table table-responsive" style="width:100%">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
@@ -17,18 +17,59 @@
                 <th>
                     @Html.DisplayNameFor(model => model.LocalAuthorityId)
                 </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Star5)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Star4)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Star3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Star2)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Star1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StarExcept)
+                </th> 
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LocalAuthorityId)
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalAuthorityId)
+            </td>
+            <th>
+                @Html.DisplayFor(model => item.Star5)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.Star4)
+            </th>
+
+            <th>
+                @Html.DisplayFor(model => item.Star3)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.Star2)
+            </th>
+
+            <th>
+                @Html.DisplayFor(model => item.Star1)
+            </th>
+            <th>
+                @Html.DisplayFor(model => item.StarExcept)
+            </th>
+        </tr>
 
             }
         </table>
