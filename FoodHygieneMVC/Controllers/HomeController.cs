@@ -66,15 +66,17 @@ namespace FoodHygieneMVC.Controllers
 
                         var dataAuthorityArray = (Authority)Newtonsoft.Json.JsonConvert.DeserializeObject(AuthResponse, typeof(Authority));
 
-                        var starArray = dataAuthorityArray; 
+                        var starArray = dataAuthorityArray;
 
-                        StarExcept = starArray.Where(x => x.RatingValue != 5 || x.RatingValue != 4 || x.RatingValue != 3 || x.RatingValue != 2 || x.RatingValue != 1).Count();
+                        //TODO NEW CLASS/LIST BLAH HERE AND .CS file! 
+
+                        StarAll = starArray.Count();
+                        StarExcept = StarAll - (Star5 + Star4 + Star3 + Star2 + Star1);
                         Star5 += starArray.Where(x => x.RatingValue = 5).Count();
                         Star4 += starArray.Where(x => x.RatingValue = 4).Count();
                         Star3 += starArray.Where(x => x.RatingValue = 3).Count();
                         Star2 += starArray.Where(x => x.RatingValue = 2).Count();
-                        Star1 += starArray.Where(x => x.RatingValue = 1).Count();
-                        StarAll = starArray.Count();
+                        Star1 += starArray.Where(x => x.RatingValue = 1).Count(); 
                     }
                 }
 
