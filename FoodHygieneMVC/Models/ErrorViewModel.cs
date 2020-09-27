@@ -1,5 +1,3 @@
-using System;
-
 namespace FoodHygieneMVC.Models
 {
     public class ErrorViewModel

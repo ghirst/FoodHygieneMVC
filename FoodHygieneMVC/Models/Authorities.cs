@@ -43,5 +43,4 @@ namespace FoodHygieneMVC.Models
         public Meta meta { get; set; }
         public List<Link2> links { get; set; }
     }
-
 }
