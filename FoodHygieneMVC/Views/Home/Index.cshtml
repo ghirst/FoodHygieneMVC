@@ -1,8 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<FoodHygieneMVC.Models.Authorities>
+
+@{
+    ViewBag.Title = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="form-horizontal">
+
+    <hr />
+    <div class="form-group">
+
+
+        <table class="table table-responsive" style="width:400px">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FriendlyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalAuthorityId)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FriendlyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalAuthorityId)
+                    </td>
+
+                </tr>
+
+            }
+
+        </table>
+    </div>
+</div> 

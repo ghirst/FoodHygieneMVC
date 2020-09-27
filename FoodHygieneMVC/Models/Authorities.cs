@@ -1,4 +1,4 @@
-﻿namespace FoodHygieneMVC.Controllers
+﻿namespace FoodHygieneMVC.Models
 {
     public class Authorities
     {
