@@ -55,7 +55,7 @@ namespace FoodHygieneMVC.Controllers
                 foreach (var authID in distinctLocalAuthorityIDCodeList)
                 {
                     //API here to get each establishment 
-                    HttpResponseMessage ResEstablishment = await client.GetAsync("Establishments?localAuthorityId=760");
+                    HttpResponseMessage ResEstablishment = await client.GetAsync("Establishments?localAuthorityId=" + authID + "");
 
                     //Checking the response is successful or not which is sent using HttpClient
                     if (ResEstablishment.IsSuccessStatusCode)
@@ -67,12 +67,12 @@ namespace FoodHygieneMVC.Controllers
 
                         AuthInfo = starArray.Authorities;
 
-                        //StarExcept = AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey != 5 || x.ratingKey != 4 || x.ratingKey != 3 || x.ratingKey != 2 || x.ratingKey != 1).Count();
-                        //Star5 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 5).Count();
-                        //Star4 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 4).Count();
-                        //Star3 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 3).Count();
-                        //Star2 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 2).Count();
-                        //Star1 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 1).Count(); 
+                        StarExcept = AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey != 5 || x.ratingKey != 4 || x.ratingKey != 3 || x.ratingKey != 2 || x.ratingKey != 1).Count();
+                        Star5 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 5).Count();
+                        Star4 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 4).Count();
+                        Star3 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 3).Count();
+                        Star2 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 2).Count();
+                        Star1 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 1).Count();
                     }
                 }
 
