@@ -51,6 +51,7 @@ namespace FoodHygieneMVC.Controllers
                 var Star3 = 0;
                 var Star2 = 0;
                 var Star1 = 0;
+                var StarAll = 0;
 
                 foreach (var authID in distinctLocalAuthorityIDCodeList)
                 {
@@ -63,16 +64,17 @@ namespace FoodHygieneMVC.Controllers
 
                         var starResponse = ResEstablishment.Content.ReadAsStringAsync().Result;
 
-                        var starArray = (Root)Newtonsoft.Json.JsonConvert.DeserializeObject(starResponse, typeof(Root));
+                        var dataAuthorityArray = (Authority)Newtonsoft.Json.JsonConvert.DeserializeObject(AuthResponse, typeof(Authority));
 
-                        AuthInfo = starArray.Authorities;
+                        var starArray = dataAuthorityArray; 
 
-                        StarExcept = AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey != 5 || x.ratingKey != 4 || x.ratingKey != 3 || x.ratingKey != 2 || x.ratingKey != 1).Count();
-                        Star5 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 5).Count();
-                        Star4 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 4).Count();
-                        Star3 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 3).Count();
-                        Star2 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 2).Count();
-                        Star1 += AuthInfo.Select(o => o.LocalAuthorityIdCode).Where(x => x.ratingKey = 1).Count();
+                        StarExcept = starArray.Where(x => x.RatingValue != 5 || x.RatingValue != 4 || x.RatingValue != 3 || x.RatingValue != 2 || x.RatingValue != 1).Count();
+                        Star5 += starArray.Where(x => x.RatingValue = 5).Count();
+                        Star4 += starArray.Where(x => x.RatingValue = 4).Count();
+                        Star3 += starArray.Where(x => x.RatingValue = 3).Count();
+                        Star2 += starArray.Where(x => x.RatingValue = 2).Count();
+                        Star1 += starArray.Where(x => x.RatingValue = 1).Count();
+                        StarAll = starArray.Count();
                     }
                 }
 
