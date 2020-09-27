@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FoodHygieneMVC.Models.Authorities>
+﻿@model IEnumerable<FoodHygieneMVC.Models.Authority>
 
 @{
     ViewData["Title"] = "View";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Value)
+                @Html.DisplayNameFor(model => model.LocalAuthorityId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -25,7 +25,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Value)
+                @Html.DisplayFor(modelItem => item.LocalAuthorityId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

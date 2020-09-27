@@ -15,7 +15,7 @@ namespace FoodHygieneMVC.Controllers
         readonly string Baseurl = "https://api.ratings.food.gov.uk";
         public async Task<ActionResult> Index()
         {
-            List<Authorities> AuthInfo = new List<Authorities>();
+            List<Authority> AuthInfo = new List<Authority>();
 
 
             using var client = new HttpClient
@@ -38,9 +38,12 @@ namespace FoodHygieneMVC.Controllers
                 //Storing the response details recieved from web api   
                 var AuthResponse = Res.Content.ReadAsStringAsync().Result;
 
-                //Deserializing the response recieved from web api and storing into the Employee list  
-                AuthInfo = JsonConvert.DeserializeObject<List<Authorities>>(AuthResponse);
+                //Deserializing the response recieved from web api and storing into the list   
+                //TODO Deserialize correctly!
+                AuthInfo = JsonConvert.DeserializeObject<List<Authority>>(AuthResponse);
 
+                 
+                  
             }
             //returning the employee list to view  
             return View(AuthInfo);
