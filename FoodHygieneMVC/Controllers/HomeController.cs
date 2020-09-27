@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace FoodHygieneMVC.Controllers
 {
@@ -17,6 +17,7 @@ namespace FoodHygieneMVC.Controllers
         {
             List<Authorities> AuthInfo = new List<Authorities>();
 
+
             using var client = new HttpClient
             {
                 //Passing service base url  
@@ -26,9 +27,10 @@ namespace FoodHygieneMVC.Controllers
             client.DefaultRequestHeaders.Clear();
             //Define request data format  
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("x-api-version", "2"); 
 
             //Sending request to find web api REST service resource GETRegions using HttpClient  
-            HttpResponseMessage Res = await client.GetAsync("Regions/basic");
+            HttpResponseMessage Res = await client.GetAsync("Authorities/basic");
 
             //Checking the response is successful or not which is sent using HttpClient  
             if (Res.IsSuccessStatusCode)

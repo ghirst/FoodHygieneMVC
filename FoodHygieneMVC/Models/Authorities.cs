@@ -2,9 +2,9 @@
 {
     public class Authorities
     {
-        public int LocalAuthorityId { get; set; }
+        public string Name { get; set; }
 
-        public string FriendlyName { get; set; }
+        public string Value { get; set; }
 
     }
 }
