@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -40,10 +41,13 @@ namespace FoodHygieneMVC.Controllers
 
                 //Deserializing the response recieved from web api and storing into the list   
                 //TODO Deserialize correctly!
-                AuthInfo = JsonConvert.DeserializeObject<List<Authority>>(AuthResponse);
 
-                 
-                  
+                // AuthInfo = JsonConvert.DeserializeObject<List<Authority>>(AuthResponse);
+
+                var dataArray = (Root)Newtonsoft.Json.JsonConvert.DeserializeObject(AuthResponse, typeof(Root));
+
+                AuthInfo = dataArray.authorities; 
+
             }
             //returning the employee list to view  
             return View(AuthInfo);
