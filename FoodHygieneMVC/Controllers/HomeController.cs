@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers; 
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace FoodHygieneMVC.Controllers
 {
@@ -18,6 +18,7 @@ namespace FoodHygieneMVC.Controllers
         {
             List<Authority> AuthInfo = new List<Authority>();
             List<Establishment> EstablishmentInfo = new List<Establishment>();
+            List<AuthoritiesRatings> AuthoritiesInfo = new List<AuthoritiesRatings>();
 
             using var client = new HttpClient
             {
@@ -45,30 +46,30 @@ namespace FoodHygieneMVC.Controllers
 
                 foreach (var authID in distinctLocalAuthorityIDCodeList)
                 {
-                    ResetStarValues(out StarExcept, out Star5, out Star4, out Star3, out Star2, out Star1, out StarAll);
-                    //API here to get each establishment 
+                    ResetStarValues(out StarExcept, out Star5, out Star4, out Star3, out Star2, out Star1, out StarAll); 
                     HttpResponseMessage ResEstablishment = await client.GetAsync("Establishments?localAuthorityId=" + authID + "");
-
-                    //Checking the response is successful or not which is sent using HttpClient
+                     
                     if (ResEstablishment.IsSuccessStatusCode)
-                    {
-                         
+                    { 
                         var establishmentResponse = ResEstablishment.Content.ReadAsStringAsync().Result; 
                          
-                        var dataEstablishmentArray = (RootEstablishment)Newtonsoft.Json.JsonConvert.DeserializeObject(AuthResponse, typeof(RootEstablishment));
+                        //Something wrong here?
+                        var dataEstablishmentArray = (RootEstablishments)Newtonsoft.Json.JsonConvert.DeserializeObject(establishmentResponse, typeof(RootEstablishments));
                          
-                        if (dataEstablishmentArray.Establishments != null)
-                        { 
-                        EstablishmentInfo = dataEstablishmentArray.Establishments;
+                        if (dataEstablishmentArray.establishments != null)
+                        {
 
-                        var establishmentList = EstablishmentInfo.ToList();
+                            EstablishmentInfo = dataEstablishmentArray.establishments;
+
+                            var establishmentList = EstablishmentInfo.ToList();
+
                             StarAll += establishmentList.Count();
-                            //Star5 += establishmentList.Where(x => x.RatingValue == '5').Count();
-                            //Star4 += establishmentList.Where(x => x.RatingValue == '4').Count();
-                            //Star3 += establishmentList.Where(x => x.RatingValue == '3').Count();
-                            //Star2 += establishmentList.Where(x => x.RatingValue == '2').Count();
-                            //Star1 += establishmentList.Where(x => x.RatingValue == '1').Count();
-                            //StarExcept += establishmentList.Where(x => x.RatingValue != '5' || x.RatingValue != '4' || x.RatingValue != '3' || x.RatingValue != '2' || x.RatingValue != '1').Count();
+                            Star5 += establishmentList.Where(x => x.RatingValue == "5").Count();
+                            Star4 += establishmentList.Where(x => x.RatingValue == "4").Count();
+                            Star3 += establishmentList.Where(x => x.RatingValue == "3").Count();
+                            Star2 += establishmentList.Where(x => x.RatingValue == "2").Count();
+                            Star1 += establishmentList.Where(x => x.RatingValue == "1").Count();
+                            StarExcept += establishmentList.Where(x => x.RatingValue != "5" || x.RatingValue != "4" || x.RatingValue != "3" || x.RatingValue != "2" || x.RatingValue != "1").Count();
                         } 
                     }
                 }
@@ -81,11 +82,11 @@ namespace FoodHygieneMVC.Controllers
                 Star1 = Math.Round(((Star1 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
                 StarExcept = Math.Round(((StarExcept / StarAll) * 100), 0, MidpointRounding.AwayFromZero); 
                  
+                //TODO Send to AuthoritiesRatings
                // RootEstablishment.Add(StarExcept, Star5, Star4, Star3, Star2, Star1, LocalAuthorityIdCode);  
             }
-            //returning needs to be amended to Establishment instead
-            return View(EstablishmentInfo);
-            //return View(AuthInfo); 
+            //returning needs to be amended to AuthoritiesRatings instead
+            return View(EstablishmentInfo); 
         }
 
      

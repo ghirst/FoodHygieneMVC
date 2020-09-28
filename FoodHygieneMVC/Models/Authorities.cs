@@ -7,28 +7,7 @@ namespace FoodHygieneMVC.Models
     {
         public string Rel { get; set; }
         public string Href { get; set; }
-    }
-
-    public class RootEstablishment
-    {
-        public List<Establishment> Establishments { get; set; }
-
-        public string RatingValue {get; set; }
-    }
-
-    public class Establishment
-    {
-        public int LocalAuthorityId { get; set; } 
-        public string Name { get; set; } 
-
-        public int Star5 { get; set; }
-        public int Star4 { get; set; }
-        public int Star3 { get; set; }
-
-        public int Star2 { get; set; }
-        public int Star1 { get; set; }
-        public int StarExcept { get; set; }
-    }
+    } 
     public class Authority
     {
         public int LocalAuthorityId { get; set; }
