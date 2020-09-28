@@ -40,9 +40,8 @@ namespace FoodHygieneMVC.Controllers
                 AuthInfo = dataArray.Authorities;
 
                 var distinctLocalAuthorityIDCodeList = AuthInfo.Select(o => o.LocalAuthorityIdCode).Distinct().ToList();
-                
-                int StarExcept, Star5, Star4, Star3, Star2, Star1, StarAll; 
-                SetStars(out StarExcept, out Star5, out Star4, out Star3, out Star2, out Star1, out StarAll);
+
+                ResetStarValues(out double StarExcept, out double Star5, out double Star4, out double Star3, out double Star2, out double Star1, out double StarAll);
 
                 foreach (var authID in distinctLocalAuthorityIDCodeList)
                 {
@@ -53,51 +52,43 @@ namespace FoodHygieneMVC.Controllers
                     //Checking the response is successful or not which is sent using HttpClient
                     if (ResEstablishment.IsSuccessStatusCode)
                     {
-
-                        var starResponse = ResEstablishment.Content.ReadAsStringAsync().Result;
-
+                         
+                        var establishmentResponse = ResEstablishment.Content.ReadAsStringAsync().Result; 
+                         
                         var dataEstablishmentArray = (RootEstablishment)Newtonsoft.Json.JsonConvert.DeserializeObject(AuthResponse, typeof(RootEstablishment));
-
-                        if(dataEstablishmentArray.Establishments != null)
+                         
+                        if (dataEstablishmentArray.Establishments != null)
                         { 
                         EstablishmentInfo = dataEstablishmentArray.Establishments;
 
                         var establishmentList = EstablishmentInfo.ToList();
- 
-                        StarAll = establishmentList.Count();
-                        StarExcept = StarAll - (Star5 + Star4 + Star3 + Star2 + Star1);
+                            StarAll += establishmentList.Count();
                             //Star5 += establishmentList.Where(x => x.RatingValue == '5').Count();
                             //Star4 += establishmentList.Where(x => x.RatingValue == '4').Count();
                             //Star3 += establishmentList.Where(x => x.RatingValue == '3').Count();
                             //Star2 += establishmentList.Where(x => x.RatingValue == '2').Count();
                             //Star1 += establishmentList.Where(x => x.RatingValue == '1').Count();
-                        }
+                            //StarExcept += establishmentList.Where(x => x.RatingValue != '5' || x.RatingValue != '4' || x.RatingValue != '3' || x.RatingValue != '2' || x.RatingValue != '1').Count();
+                        } 
                     }
                 }
 
-                //Convert to percentage and save
-
-                //RootEstablishment.Add(StarExcept, Star5, Star4, Star3, Star2, Star1, LocalAuthorityIdCode);
-
-
+                //Convert to percentage and save  
+                Star5 = Math.Round(((Star5 / StarAll) * 100), 0,MidpointRounding.AwayFromZero);
+                Star4 = Math.Round(((Star4 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                Star3 = Math.Round(((Star3 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                Star2 = Math.Round(((Star2 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                Star1 = Math.Round(((Star1 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                StarExcept = Math.Round(((StarExcept / StarAll) * 100), 0, MidpointRounding.AwayFromZero); 
+                 
+               // RootEstablishment.Add(StarExcept, Star5, Star4, Star3, Star2, Star1, LocalAuthorityIdCode);  
             }
-            //returning the employee list to view
-            return View(AuthInfo);
-
-           // return View(AuthInfo);
+            //returning needs to be amended to Establishment instead
+            return View(EstablishmentInfo);
+            //return View(AuthInfo); 
         }
 
-        private static void SetStars(out int StarExcept, out int Star5, out int Star4, out int Star3, out int Star2, out int Star1, out int StarAll)
-        {
-            StarExcept = 0;
-            Star5 = 0;
-            Star4 = 0;
-            Star3 = 0;
-            Star2 = 0;
-            Star1 = 0;
-            StarAll = 0;
-        }
-
+     
         private static void ClientDefinitions(HttpClient client)
         {
             client.DefaultRequestHeaders.Clear();
@@ -106,7 +97,7 @@ namespace FoodHygieneMVC.Controllers
             client.DefaultRequestHeaders.Add("x-api-version", "2");
         }
 
-        private static void ResetStarValues(out int StarExcept, out int Star5, out int Star4, out int Star3, out int Star2, out int Star1, out int StarAll)
+        private static void ResetStarValues(out double StarExcept, out double Star5, out double Star4, out double Star3, out double Star2, out double Star1, out double StarAll)
         {
             StarExcept = 0;
             Star5 = 0;
