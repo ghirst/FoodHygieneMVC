@@ -5,9 +5,9 @@ namespace FoodHygieneMVC.Models
 {
     public class Scores
         {
-            public int Hygiene { get; set; }
-            public int Structural { get; set; }
-            public int ConfidenceInManagement { get; set; }
+            public int? Hygiene { get; set; }
+            public int? Structural { get; set; }
+            public int? ConfidenceInManagement { get; set; }
         }
 
         public class Geocode
@@ -20,12 +20,12 @@ namespace FoodHygieneMVC.Models
     {
             public object dataSource { get; set; }
             public DateTime extractDate { get; set; }
-            public int itemCount { get; set; }
+            public int? itemCount { get; set; }
             public object returncode { get; set; }
-            public int totalCount { get; set; }
-            public int totalPages { get; set; }
-            public int pageSize { get; set; }
-            public int pageNumber { get; set; }
+            public int? totalCount { get; set; }
+            public int? totalPages { get; set; }
+            public int? pageSize { get; set; }
+            public int? pageNumber { get; set; }
         }
 
         public class EstablishmentLink
@@ -36,12 +36,12 @@ namespace FoodHygieneMVC.Models
 
         public class Establishment
         {
-            public int FHRSID { get; set; }
-            public int ChangesByServerID { get; set; }
+            public int? FHRSID { get; set; }
+            public int? ChangesByServerID { get; set; }
             public string LocalAuthorityBusinessID { get; set; }
             public string BusinessName { get; set; }
             public string BusinessType { get; set; }
-            public int BusinessTypeID { get; set; }
+            public int? BusinessTypeID { get; set; }
             public string AddressLine1 { get; set; }
             public string AddressLine2 { get; set; }
             public string AddressLine3 { get; set; }
@@ -69,12 +69,12 @@ namespace FoodHygieneMVC.Models
         {
             public string dataSource { get; set; }
             public DateTime extractDate { get; set; }
-            public int itemCount { get; set; }
+            public int? itemCount { get; set; }
             public string returncode { get; set; }
-            public int totalCount { get; set; }
-            public int totalPages { get; set; }
-            public int pageSize { get; set; }
-            public int pageNumber { get; set; }
+            public int? totalCount { get; set; }
+            public int? totalPages { get; set; }
+            public int? pageSize { get; set; }
+            public int? pageNumber { get; set; }
         }
 
         public class EstablishmentLink2

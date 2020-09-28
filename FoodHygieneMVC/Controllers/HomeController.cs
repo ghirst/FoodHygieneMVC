@@ -64,11 +64,11 @@ namespace FoodHygieneMVC.Controllers
                             var establishmentList = EstablishmentInfo.ToList();
 
                             StarAll += establishmentList.Count();
-                            Star5 += establishmentList.Where(x => x.RatingValue == "5").Count();
-                            Star4 += establishmentList.Where(x => x.RatingValue == "4").Count();
-                            Star3 += establishmentList.Where(x => x.RatingValue == "3").Count();
-                            Star2 += establishmentList.Where(x => x.RatingValue == "2").Count();
-                            Star1 += establishmentList.Where(x => x.RatingValue == "1").Count();
+                            Star5 = establishmentList.Where(x => x.RatingValue == "5").Count();
+                            Star4 = establishmentList.Where(x => x.RatingValue == "4").Count();
+                            Star3 = establishmentList.Where(x => x.RatingValue == "3").Count();
+                            Star2 = establishmentList.Where(x => x.RatingValue == "2").Count();
+                            Star1 = establishmentList.Where(x => x.RatingValue == "1").Count();
                             StarExcept += establishmentList.Where(x => x.RatingValue != "5" || x.RatingValue != "4" || x.RatingValue != "3" || x.RatingValue != "2" || x.RatingValue != "1").Count();
                         } 
                     }
