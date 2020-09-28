@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FoodHygieneMVC.Models.AuthoritiesRatings.Ratings>
+﻿@model IEnumerable<FoodHygieneMVC.Models.Ratings>
 
 @{
     ViewBag.Title = "Home Page";
@@ -37,39 +37,39 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.StarExcept)
-                </th> 
+                </th>
             </tr>
 
             @foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalAuthorityId)
-            </td>
-            <th>
-                @Html.DisplayFor(model => item.Star5)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.Star4)
-            </th>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalAuthorityId)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(model => item.Star5)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.Star4)
+                    </th>
 
-            <th>
-                @Html.DisplayFor(model => item.Star3)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.Star2)
-            </th>
+                    <th>
+                        @Html.DisplayFor(model => item.Star3)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.Star2)
+                    </th>
 
-            <th>
-                @Html.DisplayFor(model => item.Star1)
-            </th>
-            <th>
-                @Html.DisplayFor(model => item.StarExcept)
-            </th>
-        </tr>
+                    <th>
+                        @Html.DisplayFor(model => item.Star1)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => item.StarExcept)
+                    </th>
+                </tr>
 
             }
         </table>

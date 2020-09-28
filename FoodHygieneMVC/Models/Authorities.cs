@@ -7,7 +7,8 @@ namespace FoodHygieneMVC.Models
     {
         public string Rel { get; set; }
         public string Href { get; set; }
-    } 
+    }
+
     public class Authority
     {
         public int LocalAuthorityId { get; set; }
@@ -15,8 +16,7 @@ namespace FoodHygieneMVC.Models
         public string Name { get; set; }
         public int EstablishmentCount { get; set; }
         public int SchemeType { get; set; }
-        public List<Link> Links { get; set; } 
-         
+        public List<Link> Links { get; set; }
     }
 
     public class Meta
@@ -43,6 +43,4 @@ namespace FoodHygieneMVC.Models
         public Meta Meta { get; set; }
         public List<Link2> Links { get; set; }
     }
-
-    
 }
