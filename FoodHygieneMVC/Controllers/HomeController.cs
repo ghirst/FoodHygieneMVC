@@ -44,6 +44,8 @@ namespace FoodHygieneMVC.Controllers
 
                 ResetStarValues(out double StarExcept, out double Star5, out double Star4, out double Star3, out double Star2, out double Star1, out double StarAll);
 
+                //ToDo
+                //Make async, no need to wait for each one to finish
                 foreach (var authID in distinctLocalAuthorityIDCodeList)
                 {
                     ResetStarValues(out StarExcept, out Star5, out Star4, out Star3, out Star2, out Star1, out StarAll);
@@ -71,18 +73,19 @@ namespace FoodHygieneMVC.Controllers
                             StarExcept += establishmentList.Where(x => x.RatingValue != "5" || x.RatingValue != "4" || x.RatingValue != "3" || x.RatingValue != "2" || x.RatingValue != "1").Count();
                         }
                     }
-                }
-
-                //Convert to percentage and save
-                Star5 = Math.Round(((Star5 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-                Star4 = Math.Round(((Star4 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-                Star3 = Math.Round(((Star3 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-                Star2 = Math.Round(((Star2 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-                Star1 = Math.Round(((Star1 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-                StarExcept = Math.Round(((StarExcept / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
-
-                //TODO Send to AuthoritiesRatings
-                //Ratings(StarExcept, Star5, Star4, Star3, Star2, Star1, LocalAuthorityIdCode);
+                    if(StarAll != 0)
+                    { 
+                    //Convert to percentage and save
+                    Star5 = Math.Round(((Star5 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    Star4 = Math.Round(((Star4 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    Star3 = Math.Round(((Star3 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    Star2 = Math.Round(((Star2 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    Star1 = Math.Round(((Star1 / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    StarExcept = Math.Round(((StarExcept / StarAll) * 100), 0, MidpointRounding.AwayFromZero);
+                    }
+                    //TODO Send to AuthoritiesRatings
+                    //Ratings(StarExcept, Star5, Star4, Star3, Star2, Star1, LocalAuthorityIdCode);
+                } 
             }
             //TODO Amend this to send out the AuthoritiesRatings
             return View(EstablishmentInfo);
